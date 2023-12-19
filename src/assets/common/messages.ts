@@ -14,4 +14,7 @@ export class Mensajes {
   wait = 'Espere un momento mientras validamos sus credenciales';
   waitMoment = 'Espere un momento';
   getData = 'Estamos obteniendo su información';
+  invalidRange = 'Rango invalido';
+  rangeInvalidMessage =
+    'El valor ingresado no esta en el rango permitido, favor de intentar con un nuevo valor';
 }

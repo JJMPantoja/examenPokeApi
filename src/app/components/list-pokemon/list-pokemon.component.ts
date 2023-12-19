@@ -21,6 +21,8 @@ export class ListPokemonComponent implements OnInit {
   itemsPerPageControl = '5';
   arrPokemons: Pokedex[] = [];
   responseGetPokemons!: GetPokemonsGlobal;
+  limit = '';
+  searchPoke = '';
 
   constructor(public utilService: UtilsService, public router: Router) {
     this.changeItemsPerPage('5');
@@ -29,9 +31,9 @@ export class ListPokemonComponent implements OnInit {
   ngOnInit(): void {}
 
   changeItemsPerPage(itemsPerPageControl: string) {
+    this.arrPokemons = [];
     this.utilService.getPokemons(itemsPerPageControl).subscribe((res) => {
       this.responseGetPokemons = res;
-      console.log(this.responseGetPokemons);
       for (
         let index = 0;
         index < this.responseGetPokemons.results.length;
@@ -45,7 +47,31 @@ export class ListPokemonComponent implements OnInit {
     });
   }
 
-  redirectDetails(pokemon: string): void {
+  public redirectDetails(pokemon: string): void {
     this.router.navigate(['inicio', 'detail', pokemon]);
+  }
+
+  public searchRange(): void {
+    this.arrPokemons = [];
+    if (Number(this.limit) <= 200) {
+      setTimeout(() => {
+        this.changeItemsPerPage(this.limit);
+      }, 3000);
+    } else {
+      this.utilService.showMessages(
+        this.messages.invalidRange,
+        this.messages.rangeInvalidMessage,
+        false,
+        true,
+        'error'
+      );
+    }
+  }
+  public searchPokemonByName(): void {
+    console.log(this.searchPoke);
+    this.arrPokemons = [];
+    this.utilService.searchPokemon(this.searchPoke).subscribe((res: any) => {
+      this.arrPokemons.push(res);
+    });
   }
 }

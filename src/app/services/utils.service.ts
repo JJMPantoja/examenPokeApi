@@ -78,7 +78,7 @@ export class UtilsService {
   }
 
   public showMessages(
-    message: string,
+    title: string,
     bodyMessage: string,
     btnClose: boolean,
     btnConfirm: boolean,
@@ -88,7 +88,7 @@ export class UtilsService {
       icon === 'error' ? 'error' : icon === 'info' ? 'info' : 'success';
     Swal.fire({
       allowOutsideClick: false,
-      title: message,
+      title: title,
       text: bodyMessage,
       icon: iconMessage,
       showCloseButton: btnClose,
@@ -103,7 +103,9 @@ export class UtilsService {
 
   public getPokemons(limit: string): Observable<any> {
     this.showLoading(this.messages.waitMoment, this.messages.getData, 'info');
-    return this.http.get(`${environment.pokemonsGlobal}?limit=${limit}`);
+    return Number(limit) <= 200
+      ? this.http.get(`${environment.pokemonsGlobal}?limit=${limit}`)
+      : this.http.get(`${environment.pokemonsGlobal}?limit=5`);
   }
 
   public pokemonOneByOne(pokemonsArr: ItemsArr): Observable<any> {
@@ -111,6 +113,10 @@ export class UtilsService {
   }
 
   public detailPokemon(name: string): Observable<any> {
+    return this.http.get(`${environment.pokemonsGlobal}/${name}`);
+  }
+
+  public searchPokemon(name: string): Observable<any> {
     return this.http.get(`${environment.pokemonsGlobal}/${name}`);
   }
 }

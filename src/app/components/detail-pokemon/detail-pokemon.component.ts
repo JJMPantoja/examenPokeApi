@@ -23,7 +23,6 @@ export class DetailPokemonComponent implements OnInit {
 
     this.utilService.detailPokemon(this.name).subscribe((res: any) => {
       this.pokemon = res;
-      console.log(res);
     });
   }
 

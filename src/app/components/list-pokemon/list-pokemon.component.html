@@ -4,7 +4,9 @@
     <form class="form-inline">
       <div class="form-group mx-sm-3 mb-2">
         <input
-          type="password"
+          [(ngModel)]="searchPoke"
+          name="searchPoke"
+          type="text"
           class="form-control"
           id="inputPassword2"
           [placeholder]="messages.searchPokemon | uppercase"
@@ -13,7 +15,11 @@
     </form>
   </div>
   <div class="col-md-2 d-flex justify-content-end">
-    <button type="submit" class="btn btn-primary mb-2 w-100">
+    <button
+      (click)="searchPokemonByName()"
+      type="submit"
+      class="btn btn-primary mb-2 w-100"
+    >
       {{ messages.search | uppercase }}
     </button>
   </div>
@@ -51,9 +57,7 @@
 </table>
 <nav aria-label="Ejemplo de navegación de página">
   <ul class="pagination justify-content-end">
-    <button [disabled]="responseGetPokemons.previous" class="page-link">
-      Anterior
-    </button>
+    <button class="page-link">Anterior</button>
 
     <div class="col-1">
       <select
@@ -69,18 +73,18 @@
         </option>
       </select>
     </div>
-    <form>
-      <div class="form-group">
-        <input
-          type="number"
-          class="form-control"
-          [placeholder]="messages.personalize"
-        />
-      </div>
-    </form>
 
-    <button [disabled]="responseGetPokemons.next" class="page-link">
-      Siguiente
-    </button>
+    <div class="form-group">
+      <input
+        (keyup)="searchRange()"
+        name="limit"
+        [(ngModel)]="limit"
+        type="number"
+        class="form-control"
+        [placeholder]="messages.personalize"
+      />
+    </div>
+
+    <button class="page-link">Siguiente</button>
   </ul>
 </nav>

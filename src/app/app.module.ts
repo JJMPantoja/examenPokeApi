@@ -9,7 +9,6 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { ListPokemonComponent } from './components/list-pokemon/list-pokemon.component';
 import { DetailPokemonComponent } from './components/detail-pokemon/detail-pokemon.component';
-import { FilterPipe } from './pipes/filter.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './material.module';
@@ -23,7 +22,6 @@ import { GeneralInterceptor } from './interceptors/general.interceptor';
     AppComponent,
     ListPokemonComponent,
     DetailPokemonComponent,
-    FilterPipe,
     LoginComponent,
     HomeComponent,
   ],
