@@ -1,0 +1,86 @@
+<!--  -->
+<div class="row">
+  <div class="col-10">
+    <form class="form-inline">
+      <div class="form-group mx-sm-3 mb-2">
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword2"
+          [placeholder]="messages.searchPokemon | uppercase"
+        />
+      </div>
+    </form>
+  </div>
+  <div class="col-md-2 d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary mb-2 w-100">
+      {{ messages.search | uppercase }}
+    </button>
+  </div>
+</div>
+<hr />
+
+<!-- Tabla de pokemons -->
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let item of tableCloumns" scope="col">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let pokemon of arrPokemons"
+      (click)="redirectDetails(pokemon.name)"
+      class="rowTableItem"
+    >
+      <th scope="row">{{ pokemon.id }}</th>
+      <td>
+        <img [src]="pokemon.sprites.front_default" />
+      </td>
+      <td>{{ pokemon.name }}</td>
+      <td>{{ pokemon.species.name }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let abilitie of pokemon.abilities">
+            {{ abilitie.ability.name }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Ejemplo de navegación de página">
+  <ul class="pagination justify-content-end">
+    <button [disabled]="responseGetPokemons.previous" class="page-link">
+      Anterior
+    </button>
+
+    <div class="col-1">
+      <select
+        (change)="changeItemsPerPage(itemsPerPageControl)"
+        [(ngModel)]="itemsPerPageControl"
+        name="lenguajes"
+        class="form-control"
+        id="lang"
+      >
+        <option [defaultSelected]="true" value="5">5</option>
+        <option *ngFor="let item of itemPerPage" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+    <form>
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          [placeholder]="messages.personalize"
+        />
+      </div>
+    </form>
+
+    <button [disabled]="responseGetPokemons.next" class="page-link">
+      Siguiente
+    </button>
+  </ul>
+</nav>

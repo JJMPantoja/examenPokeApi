@@ -1,0 +1,24 @@
+<nav class="d-flex px-3 navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-light" href="inicio">{{
+    messages.pokeApi | uppercase
+  }}</a>
+
+  <div
+    class="collapse d-flex navbar-collapse justify-content-end"
+    id="navbarSupportedContent"
+  >
+    <form class="form-inline my-2 my-lg-0">
+      <button
+        class="btn btn-danger my-2 my-sm-0"
+        type="submit"
+        (click)="logout()"
+      >
+        {{ messages.logOut | uppercase }}
+      </button>
+    </form>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,40 @@
+<div class="col-12 d-flex justify-content-end mb-5">
+  <button class="btn btn-secondary" (click)="regresarList()">Regresar</button>
+</div>
+
+<h1>{{ name | uppercase }}</h1>
+<div class="row d-flex">
+  <div class="col-sm-12 col-md-3">
+    <div class="card" style="width: 100%; height: auto">
+      <img
+        class="card-img-top"
+        [src]="pokemon.sprites.front_default"
+        alt="Card image cap"
+      />
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-2">
+    <p class="fw-bold">Tipo</p>
+    <ul>
+      <li *ngFor="let abilitie of pokemon.types">
+        {{ abilitie.type.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-2">
+    <p class="fw-bold">Habilidades</p>
+    <ul>
+      <li *ngFor="let abilitie of pokemon.abilities">
+        {{ abilitie.ability.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-5" style="height: 15rem; overflow-y: scroll">
+    <p class="fw-bold">Movimientos</p>
+    <ul>
+      <li *ngFor="let abilitie of pokemon.moves">
+        {{ abilitie.move.name }}
+      </li>
+    </ul>
+  </div>
+</div>
