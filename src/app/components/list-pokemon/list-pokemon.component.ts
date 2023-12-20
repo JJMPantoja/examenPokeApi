@@ -38,7 +38,6 @@ export class ListPokemonComponent implements OnInit {
     this.arrPokemons = [];
     this.utilService.getPokemons(itemsPerPageControl).subscribe((res) => {
       this.responseGetPokemons = res;
-      console.log(this.responseGetPokemons);
       for (
         let index = 0;
         index < this.responseGetPokemons.results.length;
@@ -88,7 +87,6 @@ export class ListPokemonComponent implements OnInit {
       this.arrPokemons = [];
       this.utilService.paginatorNextBack(url).subscribe((res) => {
         this.responseGetPokemons = res;
-        console.log(this.responseGetPokemons);
         for (
           let index = 0;
           index < this.responseGetPokemons.results.length;
