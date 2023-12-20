@@ -5,8 +5,8 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable, finalize } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Observable, finalize } from 'rxjs';
 
 @Injectable()
 export class GeneralInterceptor implements HttpInterceptor {

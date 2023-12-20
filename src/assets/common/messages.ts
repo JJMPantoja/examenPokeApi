@@ -17,4 +17,6 @@ export class Mensajes {
   invalidRange = 'Rango invalido';
   rangeInvalidMessage =
     'El valor ingresado no esta en el rango permitido, favor de intentar con un nuevo valor';
+  next = 'Siguiente';
+  back = 'Anterior';
 }

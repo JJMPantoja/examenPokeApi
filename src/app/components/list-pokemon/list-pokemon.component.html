@@ -48,7 +48,13 @@
 </table>
 <nav aria-label="Ejemplo de navegación de página">
   <ul class="pagination justify-content-end">
-    <button class="page-link">Anterior</button>
+    <button
+      [disabled]="responseGetPokemons.previous === null"
+      (click)="nextBackPage(responseGetPokemons.previous)"
+      class="page-link"
+    >
+      {{ messages.back }}
+    </button>
 
     <div class="col-1">
       <select
@@ -76,6 +82,12 @@
       />
     </div>
 
-    <button class="page-link">Siguiente</button>
+    <button
+      [disabled]="responseGetPokemons.next === null"
+      (click)="nextBackPage(responseGetPokemons.next)"
+      class="page-link"
+    >
+      {{ messages.next }}
+    </button>
   </ul>
 </nav>

@@ -119,4 +119,9 @@ export class UtilsService {
   public searchPokemon(name: string): Observable<any> {
     return this.http.get(`${environment.pokemonsGlobal}/${name}`);
   }
+
+  public paginatorNextBack(url: string): Observable<any> {
+    this.showLoading(this.messages.waitMoment, this.messages.getData, 'info');
+    return this.http.get(url);
+  }
 }

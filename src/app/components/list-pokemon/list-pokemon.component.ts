@@ -38,6 +38,7 @@ export class ListPokemonComponent implements OnInit {
     this.arrPokemons = [];
     this.utilService.getPokemons(itemsPerPageControl).subscribe((res) => {
       this.responseGetPokemons = res;
+      console.log(this.responseGetPokemons);
       for (
         let index = 0;
         index < this.responseGetPokemons.results.length;
@@ -76,10 +77,29 @@ export class ListPokemonComponent implements OnInit {
     }
   }
   public searchPokemonByName(): void {
-    console.log(this.searchPoke);
     this.arrPokemons = [];
     this.utilService.searchPokemon(this.searchPoke).subscribe((res: any) => {
       this.arrPokemons.push(res);
     });
+  }
+
+  public nextBackPage(url: string): void {
+    if (url !== null) {
+      this.arrPokemons = [];
+      this.utilService.paginatorNextBack(url).subscribe((res) => {
+        this.responseGetPokemons = res;
+        console.log(this.responseGetPokemons);
+        for (
+          let index = 0;
+          index < this.responseGetPokemons.results.length;
+          index++
+        ) {
+          const element = this.responseGetPokemons.results[index];
+          this.utilService.pokemonOneByOne(element).subscribe((res: any) => {
+            this.arrPokemons.push(res);
+          });
+        }
+      });
+    }
   }
 }
