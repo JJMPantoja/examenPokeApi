@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   GetPokemonsGlobal,
-  ItemsArr,
   Pokedex,
 } from 'src/app/interfaces/general-interfaces';
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Mensajes } from 'src/assets/common/messages';
 
@@ -24,7 +24,11 @@ export class ListPokemonComponent implements OnInit {
   limit = '';
   searchPoke = '';
 
-  constructor(public utilService: UtilsService, public router: Router) {
+  constructor(
+    public utilService: UtilsService,
+    public router: Router,
+    private filterPipe: FilterPipe
+  ) {
     this.changeItemsPerPage('5');
   }
 
@@ -45,6 +49,10 @@ export class ListPokemonComponent implements OnInit {
         });
       }
     });
+  }
+
+  filtrarDatos() {
+    return this.filterPipe.transform(this.arrPokemons, this.searchPoke);
   }
 
   public redirectDetails(pokemon: string): void {

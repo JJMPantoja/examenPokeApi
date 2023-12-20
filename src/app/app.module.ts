@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UtilsService } from './services/utils.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GeneralInterceptor } from './interceptors/general.interceptor';
+import { FilterPipe } from './pipes/filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { GeneralInterceptor } from './interceptors/general.interceptor';
     DetailPokemonComponent,
     LoginComponent,
     HomeComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { GeneralInterceptor } from './interceptors/general.interceptor';
   ],
   providers: [
     UtilsService,
+    FilterPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GeneralInterceptor,
